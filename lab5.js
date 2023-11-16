@@ -31,7 +31,6 @@ const Lab5 = (app) => {
             ...req.body,
             id: new Date().getTime(),
         };
-        console.log(`TODO POST = ${req.body}`)
         todos.push(newTodo);
         res.json(newTodo);
     });

@@ -29,10 +29,8 @@ function ModuleRoutes(app) {
         const { cid } = req.params;
         const modules = db.modules
             .filter((m) => {
-                console.log(`m.course = ${m.course}, cid = ${cid}`)
                 return m.course === cid;
             });
-        console.log(`modules = ${modules}`);
         res.send(modules);
     });
 }
