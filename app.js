@@ -10,17 +10,27 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import UserRoutes from "./users/routes.js";
 
+const FRONTEND_URL = "https://radiant-kulfi-63b9ed.netlify.app/"
+
 mongoose.connect("mongodb://127.0.0.1:27017/kanbas");
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: FRONTEND_URL,
 }));
 const sessionOptions = {
     secret: "any string",
     resave: false,
     saveUninitialized: false,
 };
+if (false) { // true ==> DEVELOPMENT
+    sessionOptions.proxy = true;
+    sessionOptions.cookie = {
+        sameSite: "none",
+        secure: true,
+    };
+}
 app.use(
     session(sessionOptions)
 );
