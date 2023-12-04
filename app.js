@@ -16,8 +16,13 @@ const FRONTEND_URL = "https://a6--radiant-kulfi-63b9ed.netlify.app"
 
 // const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kanbas"
 const CONNECTION_STRING = "mongodb+srv://victor:supersecretpassword@kanbas-cluster.0u5ww1q.mongodb.net/?retryWrites=true&w=majority"
-
 mongoose.connect(CONNECTION_STRING);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+    console.log('Connected to MongoDB');
+});
+
 const app = express();
 app.use(cors({
     credentials: true,
