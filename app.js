@@ -10,9 +10,9 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import UserRoutes from "./users/routes.js";
 
-const FRONTEND_URL = "http://localhost:3000"
+// const FRONTEND_URL = "http://localhost:3000"
 // const FRONTEND_URL = "https://radiant-kulfi-63b9ed.netlify.app/"
-// const FRONTEND_URL = "https://kanbas-node-server-app-a6-m3tp.onrender.com" // ?????
+const FRONTEND_URL = "https://kanbas-node-server-app-a6-m3tp.onrender.com" // ?????
 
 // const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kanbas"
 const CONNECTION_STRING = "mongodb+srv://victor:supersecretpassword@kanbas-cluster.0u5ww1q.mongodb.net/?retryWrites=true&w=majority"
