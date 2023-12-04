@@ -10,15 +10,17 @@ import "dotenv/config";
 import mongoose from "mongoose";
 import UserRoutes from "./users/routes.js";
 
-const FRONTEND_URL = "https://radiant-kulfi-63b9ed.netlify.app/"
-// const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kanbas"
-const CONNECTION_STRING = "mongodb+srv://victor:supersecretpassword@kanbas-cluster.0u5ww1q.mongodb.net/?retryWrites=true&w=majority"
+const FRONTEND_URL = "http://localhost:3000"
+// const FRONTEND_URL = "https://radiant-kulfi-63b9ed.netlify.app/"
+// const FRONTEND_URL = "https://kanbas-node-server-app-a6-m3tp.onrender.com" // ?????
+
+const CONNECTION_STRING = "mongodb://127.0.0.1:27017/kanbas"
+// const CONNECTION_STRING = "mongodb+srv://victor:supersecretpassword@kanbas-cluster.0u5ww1q.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(CONNECTION_STRING);
 const app = express();
 app.use(cors({
     credentials: true,
-    // origin: "http://localhost:3000",
     origin: FRONTEND_URL,
 }));
 const sessionOptions = {
@@ -26,16 +28,14 @@ const sessionOptions = {
     resave: false,
     saveUninitialized: false,
 };
-if (false) { // true ==> DEVELOPMENT
+if (true) { // true ==> NOT DEVELOPMENT
     sessionOptions.proxy = true;
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
     };
 }
-app.use(
-    session(sessionOptions)
-);
+app.use(session(sessionOptions));
 app.use(express.json());
 UserRoutes(app);
 ModuleRoutes(app);
